@@ -193,9 +193,9 @@
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
     import { getDatabase, ref, onValue, set, push, onDisconnect, remove } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
 
-    // REEMPLAZA ESTA URL CON LA DE TU CONSOLA DE FIREBASE REALTIME DATABASE
+    // URL EXACTA DE TU PROYECTO OASIS JOVEN JUEGOS
     const firebaseConfig = {
-      databaseURL: "https://oasis-joven-app-default-rtdb.firebaseio.com/"
+      databaseURL: "https://oasis-joven-juegos-default-rtdb.firebaseio.com/"
     };
 
     let app, db, playersRef, gameStateRef;
@@ -240,7 +240,7 @@
       document.getElementById("lobby-section").style.display = "block";
     });
 
-    // Escuchar jugadores en línea
+    // Escuchar jugadores en línea en tiempo real
     if (playersRef) {
       onValue(playersRef, (snapshot) => {
         currentPlayers = snapshot.val() || {};
@@ -262,7 +262,7 @@
       });
     }
 
-    // Iniciar juego para todos
+    // Iniciar juego para todos los teléfonos conectados
     document.getElementById("btn-host-start").addEventListener("click", () => {
       const keys = Object.keys(currentPlayers);
       if (keys.length < 3) {
@@ -296,7 +296,7 @@
       });
     });
 
-    // Escuchar estado en vivo
+    // Escuchar estado en vivo para cambiar vistas en todos los teléfonos
     if (gameStateRef) {
       onValue(gameStateRef, (snapshot) => {
         const state = snapshot.val();
